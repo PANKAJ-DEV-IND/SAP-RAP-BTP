@@ -1,0 +1,26 @@
+unmanaged implementation in class zbp_cds_travel_pan_prj_unmanag unique;
+strict ( 1 );
+
+define behavior for YCDS_TRAVEL_PAN_PRJ_UNMANAGED alias travel_unmgmt
+//late numbering
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create;
+  update;
+  delete;
+  association _booking { create; }
+}
+
+define behavior for YCDS_BOOKING_PAN_PRJ_UNMANAGED //alias <alias_name>
+//late numbering
+lock dependent by _travel
+authorization dependent by _travel
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) TravelUuid;
+  association _travel;
+}

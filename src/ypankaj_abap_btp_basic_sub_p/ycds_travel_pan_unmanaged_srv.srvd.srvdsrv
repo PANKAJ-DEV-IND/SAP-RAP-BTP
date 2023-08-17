@@ -1,0 +1,5 @@
+@EndUserText.label: 'UnManaged Travel Service Defination'
+define service YCDS_TRAVEL_PAN_UNMANAGED_SRV {
+  expose YCDS_TRAVEL_PAN_PRJ_UNMANAGED as Travel;
+  expose YCDS_BOOKING_PAN_PRJ_UNMANAGED as Booking;
+}

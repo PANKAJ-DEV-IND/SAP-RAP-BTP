@@ -1,0 +1,139 @@
+@Metadata.layer: #CORE
+@UI: {
+headerInfo : {
+typeNamePlural: 'App. for Travel By PANKAJ' ,
+title : { type: #STANDARD , value: 'Description' },
+description : { value: 'TravelId' }
+}}
+//@Search.searchable: true
+annotate view YCDS_TRAVEL_PAN_PROJECTION with
+{
+
+  @UI.facet: [
+              {
+              id: 'TravelHeaderPrice',
+              purpose: #HEADER,
+              type: #DATAPOINT_REFERENCE ,
+              position: 10,
+              targetQualifier: 'PriceData'
+              },
+              {
+                id: 'TravelHeaderOverAllStatus',
+              purpose: #HEADER,
+              type: #DATAPOINT_REFERENCE ,
+              position: 20,
+              targetQualifier: 'StatusData'
+              },
+              {
+              label: 'General Information',
+              id : 'GeneralInfo',
+              type: #COLLECTION,
+              position: 10
+              },
+              {
+              label : 'General',
+              id : 'Travel',
+              type: #IDENTIFICATION_REFERENCE,
+              purpose: #STANDARD,
+              parentId: 'GeneralInfo',
+              position: 10
+              },
+              {
+              id : 'Prices',
+              type: #FIELDGROUP_REFERENCE,
+              purpose: #STANDARD,
+              parentId: 'GeneralInfo',
+              position: 20,
+              label : 'Prices',
+              targetQualifier: 'PricesGroup'
+              },
+              {
+              id : 'Date',
+              type: #FIELDGROUP_REFERENCE,
+              purpose: #STANDARD,
+              parentId: 'GeneralInfo',
+              position: 30,
+              label : 'Date',
+              targetQualifier: 'DateGroup'
+              },
+              {
+              id: 'Bookings',
+              purpose: #STANDARD,
+              type: #LINEITEM_REFERENCE ,
+              label: 'Bookings',
+              position: 20,
+              targetElement: '_Booking'
+              }
+
+              ]
+
+  @UI.hidden: true
+  TravelUuid;
+
+  @UI.selectionField: [{position: 5 }]
+  @UI.lineItem: [{position: 10 }]
+  @UI.identification: [{ position: 10 }]
+  TravelId;
+
+  @UI: { lineItem: [{ type: #FOR_ACTION, dataAction: 'TotalPrice', label: 'Calculate Total Price', position: 1  }] }
+
+  @UI.identification: [{ position: 15 }]
+  @UI.fieldGroup: [{ qualifier: 'PricesGroup', position: 30 }]
+  CurrencyCode;
+  //@EndUserText : { label: 'AirLine Logo' }
+  //  @UI.lineItem: [{ position: 25  , type: #WITH_URL , url: 'PicUrl'}]
+  @UI.lineItem: [{ position: 25 , label: 'ICON'}]
+  PicUrl;
+  @UI.lineItem: [{position: 30 }]
+  @UI.selectionField: [{ position: 10 }]
+  @UI.hidden: false
+  @UI.identification: [{ position: 20 }]
+  AgencyId;
+
+  @UI.lineItem: [{position: 40 }]
+  @UI.selectionField: [{position: 10 }]
+  CustomerId;
+
+  @UI.lineItem: [{position: 50 }]
+  @UI.selectionField: [{ position: 50 }]
+  @Consumption.filter : { selectionType: #INTERVAL, multipleSelections: false }
+  @UI.fieldGroup: [{ qualifier: 'DateGroup', position: 10 }]
+  BeginDate;
+
+  @UI.lineItem: [{position: 60 }]
+  @UI.fieldGroup: [{ qualifier: 'DateGroup', position: 10 }]
+  EndDate;
+
+  @UI.lineItem: [{position: 70 }]
+  //@UI.hidden: true
+  @UI.fieldGroup: [{ qualifier: 'PricesGroup', position: 10 }]
+  BookingFee;
+
+  @UI.lineItem: [{position: 80 }]
+  @UI.dataPoint: { qualifier: 'PriceData', title: 'Total Price' }
+  @UI.fieldGroup: [{ qualifier: 'PricesGroup', position: 10 }]
+  TotalPrice;
+  //  @UI.fieldGroup: [{ qualifier: 'PricesGroup', position: 30 }]
+  //  @UI.lineItem: [{position: 90 }]
+  //  CurrencyCode;
+  @UI.fieldGroup: [{ qualifier: 'PricesGroup', position: 40 }]
+  CurrencyText;
+  //  @UI.lineItem: [{position: 100 }]
+  //  @UI.hidden: true
+  //  Description;
+  @UI.selectionField: [{position: 30}]
+  @UI.lineItem: [{position: 110 , criticality: 'overallcriticality' }]
+  @UI.textArrangement: #TEXT_ONLY
+  //@Consumption.filter.mandatory: true
+  @UI.dataPoint: { qualifier: 'StatusData', title: 'Over All Status' }
+  OverallStatus;
+
+  //  @UI.lineItem: [{position: 120 }]
+  //  CreatedBy;
+  //  @UI.lineItem: [{position: 130 }]
+  //  CreatedAt;
+  //  @UI.lineItem: [{position: 140 }]
+  //  LastChangedBy;
+  //  @UI.lineItem: [{position: 150 }]
+  //  LastChangedAt;
+}

@@ -1,0 +1,21 @@
+@Metadata.layer: #CORE
+annotate view YCDS_BOOKING_PAN_PROJECTION with
+{
+
+  @UI.lineItem: [{ position: 10, importance: #HIGH }]
+  @UI.selectionField: [{ position: 10 }]
+  BookingId;
+  @UI.lineItem: [{ position: 20, importance: #HIGH }]
+  BookingDate;
+  @UI.lineItem: [{ position: 30, importance: #HIGH }]
+  CustomerId;
+  @UI.lineItem: [{ position: 40, importance: #HIGH }]
+  CarrierId;
+  @UI.lineItem: [{ position: 50, importance: #HIGH }]
+  ConnectionId;
+  @UI.lineItem: [{ position: 60, importance: #HIGH }]
+  FlightDate;
+  @UI.lineItem: [{ position: 5, importance: #HIGH }]
+  @EndUserText.label: 'Logo'
+  image_url;
+}
